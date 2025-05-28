@@ -41,6 +41,19 @@ body {
 .side-column {
     flex: 1;
     min-width: 250px;
+    border-left: 3px solid var(--secondary-color);
+    padding-left: 24px;
+    background: none;
+}
+
+@media (max-width: 768px) {
+    .side-column {
+        border-left: none;
+        padding-left: 0;
+        border-top: 3px solid var(--secondary-color);
+        padding-top: 18px;
+        margin-top: 18px;
+    }
 }
 
 /* Header Styles */
@@ -57,11 +70,6 @@ header {
     align-items: center;
     justify-content: space-between;
     flex-wrap: wrap;
-}
-
-.profile-info {
-    flex: 2;
-    min-width: 300px;
 }
 
 .profile-photo {
@@ -134,7 +142,9 @@ header h2 {
 }
 
 .social-link i {
-    margin-right: 5px;
+    margin-right: 8px;
+    width: 16px;  /* Fixed width for icons */
+    text-align: center;
 }
 
 /* Section Styles */
@@ -221,6 +231,7 @@ h3 {
 .skill-category {
     margin-bottom: 20px;
     width: 100%;
+    overflow: hidden; /* Prevent cards from overflowing */
 }
 
 .skill-category h3 {
@@ -242,28 +253,63 @@ h3 {
     transition: all 0.2s ease;
 }
 
-.skill-bar {
+/* Modern Skill Card Styles */
+.skill-card-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    width: 100%;
+}
+
+.skill-card {
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
+    padding: 16px 20px;
     display: flex;
     align-items: center;
-    margin-bottom: 12px;
-}
-
-.skill-name {
-    width: 120px;
-    font-weight: 500;
-}
-
-.skill-level-container {
-    flex: 1;
-    height: 10px;
-    background-color: var(--light-bg);
-    border-radius: 5px;
+    justify-content: flex-start;
+    transition: transform 0.2s ease;
+    position: relative;
     overflow: hidden;
 }
 
-.skill-level {
+.skill-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
     height: 100%;
-    background-color: var(--secondary-color);
+    background: var(--secondary-color);
+    border-radius: 4px 0 0 4px;
+}
+
+.skill-name {
+    font-weight: 600;
+    color: var(--primary-color);
+    font-size: 15px;
+    padding-left: 8px;
+}
+
+/* Remove skill-bar, skill-level, skill-level-container, skill-percentage from card display */
+.skill-bar,
+.skill-level-container,
+.skill-level,
+.skill-percentage {
+    display: none !important;
+}
+
+/* Responsive for skill cards */
+@media (max-width: 768px) {
+    .skill-card-list {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+    
+    .skill-card {
+        width: auto;
+    }
 }
 
 /* Projects Section */
@@ -444,13 +490,141 @@ ul li::before {
         flex-direction: column;
         text-align: center;
     }
-    .profile-photo {
-        margin: 0 auto 20px;
+    .profile-info {
+        flex-direction: column;
+        align-items: center;
+    }
+    .profile-details {
+        text-align: center;
+    }
+    .profile-image-container {
+        margin-left: 0;
+        margin-top: 20px;
+        justify-content: center;
     }
     .contact-info {
         justify-content: center;
     }
     .social-links {
         justify-content: center;
+    }
+}
+
+.profile-info {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.profile-details {
+    flex: 1 1 0;
+    text-align: left;
+}
+
+.profile-image-container {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    min-width: 200px;
+    margin-left: 30px;
+}
+
+.profile-image-container img {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #ddd;
+    box-shadow: var(--box-shadow, 0 2px 8px rgba(0,0,0,0.1));
+}
+
+/* Portfolio Apps Showcase */
+.portfolio-section {
+    padding: 30px;
+    background-color: white;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    margin-top: 30px;
+}
+
+.app-showcase {
+    margin-bottom: 40px;
+}
+
+.app-title {
+    color: var(--primary-color);
+    font-size: 20px;
+    margin-bottom: 15px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--secondary-color);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.app-title a {
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: color 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.app-title a:hover {
+    color: var(--secondary-color);
+}
+
+.app-title a i {
+    font-size: 16px;
+}
+
+.app-images {
+    display: flex;
+    gap: 12px;
+    overflow-x: auto;
+    padding: 10px 0;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+}
+
+.app-image {
+    flex: 0 0 auto;
+    width: calc((100% - 48px) / 5);  /* 5 images per row with gaps */
+    aspect-ratio: 9/16;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    scroll-snap-align: start;
+    background-color: #f8f9fa;
+}
+
+.app-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;  /* Changed back to cover to fill the container */
+    display: block;  /* Remove any extra space */
+    padding: 0;  /* Remove padding */
+}
+
+.app-images::-webkit-scrollbar {
+    height: 8px;
+}
+
+.app-images::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+}
+
+.app-images::-webkit-scrollbar-thumb {
+    background: var(--secondary-color);
+    border-radius: 4px;
+}
+
+@media (max-width: 768px) {
+    .app-image {
+        width: calc((100% - 24px) / 3);  /* 3 images visible on mobile */
     }
 }
