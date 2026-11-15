@@ -72,24 +72,35 @@ header {
     flex-wrap: wrap;
 }
 
-.profile-photo {
-    width: 120px;
-    height: 120px;
-    border-radius: 50%;
-    overflow: hidden;
-    border: 3px solid white;
-    box-shadow: var(--box-shadow);
+/* Must stay above the 768px media query, or it overrides the mobile layout */
+.profile-info {
     display: flex;
+    flex-direction: row;
     align-items: center;
-    justify-content: center;
-    background-color: #ddd;
-    color: #666;
-    font-size: 36px;
+    justify-content: space-between;
+    width: 100%;
 }
 
-.profile-photo img {
-    width: 100%;
-    height: auto;
+.profile-details {
+    flex: 1 1 0;
+    text-align: left;
+}
+
+.profile-image-container {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    min-width: 200px;
+    margin-left: 30px;
+}
+
+.profile-image-container img {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #ddd;
+    box-shadow: var(--box-shadow);
 }
 
 header h1 {
@@ -253,116 +264,6 @@ h3 {
     transition: all 0.2s ease;
 }
 
-/* Modern Skill Card Styles */
-.skill-card-list {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 16px;
-    width: 100%;
-}
-
-.skill-card {
-    background: #ffffff;
-    border-radius: 12px;
-    box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
-    padding: 16px 20px;
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    transition: transform 0.2s ease;
-    position: relative;
-    overflow: hidden;
-}
-
-.skill-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 4px;
-    height: 100%;
-    background: var(--secondary-color);
-    border-radius: 4px 0 0 4px;
-}
-
-.skill-name {
-    font-weight: 600;
-    color: var(--primary-color);
-    font-size: 15px;
-    padding-left: 8px;
-}
-
-/* Remove skill-bar, skill-level, skill-level-container, skill-percentage from card display */
-.skill-bar,
-.skill-level-container,
-.skill-level,
-.skill-percentage {
-    display: none !important;
-}
-
-/* Responsive for skill cards */
-@media (max-width: 768px) {
-    .skill-card-list {
-        grid-template-columns: 1fr;
-        gap: 12px;
-    }
-    
-    .skill-card {
-        width: auto;
-    }
-}
-
-/* Projects Section */
-.projects-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 15px;
-    padding: 0;
-    list-style: none;
-}
-
-.project-item {
-    border-left: 3px solid var(--secondary-color);
-    padding-left: 15px;
-    margin-bottom: 15px;
-}
-
-.project-title {
-    font-weight: 600;
-    margin-bottom: 5px;
-    display: flex;
-    justify-content: space-between;
-}
-
-.project-link {
-    color: var(--accent-color);
-    text-decoration: none;
-    transition: all 0.2s ease;
-}
-
-.project-link:hover {
-    text-decoration: underline;
-}
-
-.project-description {
-    margin: 5px 0;
-}
-
-.project-tech {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    margin-top: 8px;
-}
-
-.tech-tag {
-    background-color: var(--light-bg);
-    border-radius: 15px;
-    padding: 3px 10px;
-    font-size: 12px;
-    color: var(--text-light);
-}
-
 /* Languages Section */
 .language-item {
     display: flex;
@@ -400,25 +301,6 @@ h3 {
 
 .gpa {
     color: var(--text-light);
-}
-
-/* Achievement Badges */
-.achievement-badges {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 12px;
-    margin-top: 10px;
-}
-
-.badge {
-    background-color: var(--primary-color);
-    color: white;
-    border-radius: 20px;
-    padding: 5px 12px;
-    font-size: 12px;
-    display: flex;
-    align-items: center;
-    gap: 5px;
 }
 
 /* Professional Summary */
@@ -508,36 +390,6 @@ ul li::before {
     .social-links {
         justify-content: center;
     }
-}
-
-.profile-info {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
-}
-
-.profile-details {
-    flex: 1 1 0;
-    text-align: left;
-}
-
-.profile-image-container {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    min-width: 200px;
-    margin-left: 30px;
-}
-
-.profile-image-container img {
-    width: 180px;
-    height: 180px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 3px solid #ddd;
-    box-shadow: var(--box-shadow, 0 2px 8px rgba(0,0,0,0.1));
 }
 
 /* Portfolio Apps Showcase */
